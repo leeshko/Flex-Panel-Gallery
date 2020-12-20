@@ -151,14 +151,16 @@
         const panels = document.querySelectorAll('.panel');
 
         panels.forEach(panel => {
-            panel.addEventListener("click", function (event) {
-                panels.forEach(panel => {
-                    panel.classList.remove('open');
-                });
-                panel.classList.add('open');
-                panel.addEventListener('transitionend', toggleActive);
-            });
+            panel.addEventListener("click", changeTagClass);
+            panel.addEventListener('transitionend', toggleActive);
         });
+
+        function changeTagClass(event) {
+            panels.forEach(panel => {
+                panel.classList.remove('open');
+            });
+            event.srcElement.classList.add('open');
+        }
 
         function toggleActive(e) {
             if (e.propertyName.includes('flex')) {
