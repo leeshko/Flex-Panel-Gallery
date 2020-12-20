@@ -151,19 +151,20 @@
         const panels = document.querySelectorAll('.panel');
 
         panels.forEach(panel => {
-            panel.addEventListener("click", function () {
-                panels.forEach(panel => {
-                    panel.classList.remove('open');
-                });
-                panel.classList.add('open');
-            });
+            panel.addEventListener("click", changeTagClass);
+            panel.addEventListener('transitionend', toggleActive);
         });
 
-        document.addEventListener('transitionend', toggleActive);
+        function changeTagClass(event) {
+            panels.forEach(panel => {
+                panel.classList.remove('open');
+            });
+            event.srcElement.classList.add('open');
+        }
 
         function toggleActive(e) {
             if (e.propertyName.includes('flex')) {
-                e.target.classList.toggle('open-active');
+                this.classList.toggle('open-active');
             }
         }
 
