@@ -150,27 +150,21 @@
 
         const panels = document.querySelectorAll('.panel');
 
-        panels.forEach(panel => {
-            panel.addEventListener("click", changeTagClass);
-            panel.addEventListener('transitionend', toggleActive);
-        });
-
         function changeTagClass(event) {
-            panels.forEach(panel => {
-                panel.classList.remove('open');
-            });
-            event.srcElement.classList.add('open');
+            this.classList.toggle('open');
         }
-
+        
         function toggleActive(e) {
             if (e.propertyName.includes('flex')) {
                 this.classList.toggle('open-active');
             }
         }
-
-    </script>
-
-
+        
+        panels.forEach(panel => {
+            panel.addEventListener('click', changeTagClass);
+            panel.addEventListener('transitionend', toggleActive);
+        });
+        </script>
 
 </body>
 
