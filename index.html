@@ -151,6 +151,11 @@
         const panels = document.querySelectorAll('.panel');
 
         function changeTagClass(event) {
+            if (!this.classList.contains('open')) {
+                panels.forEach(panel => {
+                    panel.classList.remove('open');
+                });
+            }
             this.classList.toggle('open');
         }
         
@@ -164,6 +169,8 @@
             panel.addEventListener('click', changeTagClass);
             panel.addEventListener('transitionend', toggleActive);
         });
+
+
         </script>
 
 </body>
